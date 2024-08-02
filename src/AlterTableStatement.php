@@ -5,14 +5,6 @@ namespace CornCodeCreations\SqlNormalizer;
 class AlterTableStatement
 {
     /**
-     * @deprecated Replaced by `addIndex_DeactivateRedundantIndexCreation()`-function
-     */
-    public static function sanitize_AlterTableCommand_AddIndex_DeactivateRedundantCommands(string $sqlSchema): string
-    {
-        return self::addIndex_DeactivateRedundantIndexCreation($sqlSchema);
-    }
-
-    /**
      * Deactivates redundant INDEX-creation commands by commenting out
      * lines where an index is created on a column that already has a primary key.
      *
@@ -65,15 +57,6 @@ class AlterTableStatement
         return $sqlSchema;
     }
 
-
-    /**
-     * @deprecated replaced by `addIndex_sanitizeIndexNamesAndColumnNames()`-function
-     */
-    public static function sanitize_AlterTableCommand_AddIndex_IndexName_And_ColumnName(string $sqlSchema): string
-    {
-        return self::addIndex_sanitizeIndexNamesAndColumnNames($sqlSchema);
-    }
-
     /**
      * This function will remove unwanted characters from COLUMN-names and INDEX-names!
      * Unwanted characters are '-' (hyphen) and ' ' (blank)
@@ -98,14 +81,6 @@ class AlterTableStatement
         }, $sqlSchema);
 
         return $sqlSchemaNormalized;
-    }
-
-    /**
-     * @deprecated replaced by 'addPrimaryKey_sanitizeColumnName()'-function
-     */
-    public static function sanitize_AlterTableCommand_AddPrimaryKey_ColumnName(string $sqlSchema): string
-    {
-        return self::addPrimaryKey_sanitizeColumnName($sqlSchema);
     }
 
     /**
