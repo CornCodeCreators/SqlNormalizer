@@ -1,3 +1,3 @@
 # SqlNormalizer
 
-> Adapt SQL-string to the best digestible standard.
+> Adapting SQL-strings to the best feasible standard 

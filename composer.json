@@ -1,0 +1,19 @@
+{
+    "name": "corncodecreations/sql-normalizer",
+    "description": "Adapting SQL-strings to the best feasible standard.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "CornCodeCreations\\SqlNormalizer\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tim Korn",
+            "email": "info@corncodecreations.de"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
