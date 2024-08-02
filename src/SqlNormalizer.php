@@ -1,5 +1,6 @@
 <?php
 
+namespace CornCodeCreations;
 
 class SqlNormalizer
 {
@@ -94,7 +95,7 @@ class SqlNormalizer
     }
 
     /**
-     * tmp info: uses `preg_replace_callback()`
+     * todo: description
      */
     public static function sanitize_AlterTableCommand_AddIndex_IndexName_And_ColumnName(string $sqlSchema): string
     {
@@ -117,7 +118,7 @@ class SqlNormalizer
     }
 
     /**
-     * tmp info: uses `preg_replace_callback()`
+     * todo: description
      */
     public static function sanitize_AlterTableCommand_AddPrimaryKey_ColumnName(string $sqlSchema): string
     {
@@ -137,7 +138,7 @@ class SqlNormalizer
     }
 
     /**
-     * tmp info: uses `preg_replace_callback()`
+     * todo: description
      */
     public static function sanitize_CreateTableCommand_ColumnNames(string $sqlSchema): string
     {
@@ -163,9 +164,7 @@ class SqlNormalizer
     }
 
     /**
-     *  tmp info: uses `preg_replace_callback()`
-     *
-     * Sanitize invalid COLUMN-names inside "INSERT INTO"-statement
+     * todo: description
      */
     public static function normalizeColumnNamesInInsertIntoClause(string $sqlData): string
     {
