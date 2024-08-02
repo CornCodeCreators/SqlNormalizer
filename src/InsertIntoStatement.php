@@ -5,14 +5,6 @@ namespace CornCodeCreations\SqlNormalizer;
 class InsertIntoStatement
 {
     /**
-     * @deprecated Replaced by 'sanitizeColumnNames()'-function
-     */
-    public static function normalizeColumnNamesInInsertIntoClause(string $sqlData): string
-    {
-        return self::sanitizeColumnNames($sqlData);
-    }
-
-    /**
      * This function will remove unwanted characters from column-names!
      * Unwanted characters are '-' (hyphen) and ' ' (blank)
      */
@@ -38,15 +30,6 @@ class InsertIntoStatement
         }, $sqlData);
 
         return $sqlDataNew;
-    }
-
-
-    /**
-     * @deprecated Replaced by 'addLinebreakPerItem()'-function
-     */
-    public static function normalizeSqlDataByAddingLinebreaks(string $sqlData): string
-    {
-        return self::addLinebreakPerItem($sqlData);
     }
 
     /**

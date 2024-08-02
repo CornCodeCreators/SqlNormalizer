@@ -5,20 +5,32 @@ namespace CornCodeCreations\SqlNormalizer;
 class AlterTableStatement
 {
     /**
-     * Deactivation of redundant INDEX-creation commands (a primary key on the same
-     * column is already creating an index automatically).
-     *
-     * example (pre):
-     * [line 1] ALTER TABLE `Employees` ADD INDEX `EmployeeID` (`EmployeeID`);
-     * [line 2] ALTER TABLE `Employees` ADD INDEX `PostalCode` (`PostalCode`);
-     * [line 3] ALTER TABLE `Employees` ADD PRIMARY KEY (`EmployeeID`);
-     *
-     * example (post):
-     * [line 1] # ALTER TABLE `Employees` ADD INDEX `EmployeeID` (`EmployeeID`);
-     * [line 2] ALTER TABLE `Employees` ADD INDEX `PostalCode` (`PostalCode`);
-     * [line 3] ALTER TABLE `Employees` ADD PRIMARY KEY (`EmployeeID`);
+     * @deprecated Replaced by `addIndex_DeactivateRedundantIndexCreation()`-function
      */
     public static function sanitize_AlterTableCommand_AddIndex_DeactivateRedundantCommands(string $sqlSchema): string
+    {
+        return self::addIndex_DeactivateRedundantIndexCreation($sqlSchema);
+    }
+
+    /**
+     * Deactivates redundant INDEX-creation commands by commenting out
+     * lines where an index is created on a column that already has a primary key.
+     *
+     * Example (pre):
+     * ```sql
+     * ALTER TABLE `Employees` ADD INDEX `EmployeeID` (`EmployeeID`);
+     * ALTER TABLE `Employees` ADD INDEX `PostalCode` (`PostalCode`);
+     * ALTER TABLE `Employees` ADD PRIMARY KEY (`EmployeeID`);
+     * ```
+     *
+     * Example (post):
+     * ```sql
+     * # ALTER TABLE `Employees` ADD INDEX `EmployeeID` (`EmployeeID`);
+     * ALTER TABLE `Employees` ADD INDEX `PostalCode` (`PostalCode`);
+     * ALTER TABLE `Employees` ADD PRIMARY KEY (`EmployeeID`);
+     * ```
+     */
+    public static function addIndex_DeactivateRedundantIndexCreation(string $sqlSchema): string
     {
         // Use case 1: INDEX prior PRIMARY KEY
         $pattern      = '/^(ALTER TABLE `)(?<table>[^`]+)(` ADD (?<unique>UNIQUE ){0,1}INDEX `)(?<index>[^`]+)(` \(`)(?<field>[^`]+)(`\);)(.*?)(ALTER TABLE `)\k<table>(` ADD PRIMARY KEY \(`)\k<field>(`\);$)/sm';
@@ -26,11 +38,11 @@ class AlterTableStatement
         $sqlSchemaNew = preg_replace($pattern, $replacement, $sqlSchema);
 
         if (!$sqlSchemaNew) {
-            throw new \App\Service\RuntimeException('Error occurred during normalization step 1!');
+            throw new \RuntimeException('Error occurred during normalization step 1!');
         }
 
         if (is_array($sqlSchemaNew)) {
-            throw new \App\Service\RuntimeException('String expected, but Array received!');
+            throw new \RuntimeException('String expected, but Array received!');
         }
 
         $sqlSchema = $sqlSchemaNew;
@@ -41,11 +53,11 @@ class AlterTableStatement
         $sqlSchemaNew = preg_replace($pattern, $replacement, $sqlSchema);
 
         if (!$sqlSchemaNew) {
-            throw new \App\Service\RuntimeException('Error occurred during normalization of INDEX!');
+            throw new \RuntimeException('Error occurred during normalization of INDEX!');
         }
 
         if (is_array($sqlSchemaNew)) {
-            throw new \App\Service\RuntimeException('String expected, but Array received!');
+            throw new \RuntimeException('String expected, but Array received!');
         }
 
         $sqlSchema = $sqlSchemaNew;
@@ -53,51 +65,22 @@ class AlterTableStatement
         return $sqlSchema;
     }
 
+
     /**
-     * @deprecated replaced by 'sanitize_AlterTableCommand_AddIndex_ColumnName'
+     * @deprecated replaced by `addIndex_sanitizeIndexNamesAndColumnNames()`-function
      */
-    public static function sanitize_AlterTableCommand_AddIndex_IndexName(string $sqlSchema): string
+    public static function sanitize_AlterTableCommand_AddIndex_IndexName_And_ColumnName(string $sqlSchema): string
     {
-        throw new \RuntimeException('not to be used anymore');
-
-        $lines = explode("\n", $sqlSchema);
-
-        // change each occurrence of the INDEX-pattern
-        foreach ($lines as $key => $line) {
-            $pattern = '/^(ALTER TABLE `)(?<table>[^`]+)(` ADD INDEX `)(?<index>[^`]+)(` \(`)(?<column>[^`]+)(`\);)$/';
-
-            preg_match($pattern, $line, $matches);
-
-            if ($matches) {
-                $lineOld    = $matches[0];
-                $tableName  = $matches['table'];
-                $indexName  = $matches['index'];
-                $columnName = $matches['column'];
-
-                $indexNameNew = str_replace(['-', ' '], '_', $indexName);
-
-                // update only if difference
-                if ($indexName !== $indexNameNew) {
-                    // make all small
-                    $indexNameNew = strtolower($indexNameNew);
-
-                    // adapt the line
-                    $lineNew = "ALTER TABLE `$tableName` ADD INDEX `$indexNameNew` (`$columnName`);";
-                    // $lines[$key] = "# $lineOld\n$lineNew";
-                    $lines[$key] = $lineNew;
-                }
-            }
-        }
-
-        $sqlSchema = implode("\n", $lines);
-
-        return $sqlSchema;
+        return self::addIndex_sanitizeIndexNamesAndColumnNames($sqlSchema);
     }
 
     /**
-     * todo: description
+     * This function will remove unwanted characters from COLUMN-names and INDEX-names!
+     * Unwanted characters are '-' (hyphen) and ' ' (blank)
+     *
+     * On top INDEX-names will be transformed to lower case.
      */
-    public static function sanitize_AlterTableCommand_AddIndex_IndexName_And_ColumnName(string $sqlSchema): string
+    public static function addIndex_sanitizeIndexNamesAndColumnNames(string $sqlSchema): string
     {
         $pattern = '/ALTER TABLE `(?<table>[^`]+)` ADD (?<unique>UNIQUE ){0,1}INDEX `(?<index>[^`]+)` \(`(?<column>[^`]+)`\);/';
 
@@ -118,9 +101,18 @@ class AlterTableStatement
     }
 
     /**
-     * todo: description
+     * @deprecated replaced by 'addPrimaryKey_sanitizeColumnName()'-function
      */
     public static function sanitize_AlterTableCommand_AddPrimaryKey_ColumnName(string $sqlSchema): string
+    {
+        return self::addPrimaryKey_sanitizeColumnName($sqlSchema);
+    }
+
+    /**
+     * This function will remove unwanted characters from COLUMN-names for PRIMARY KEYs!
+     * Unwanted characters are '-' (hyphen) and ' ' (blank)
+     */
+    public static function addPrimaryKey_sanitizeColumnName(string $sqlSchema): string
     {
         $pattern = '/ALTER TABLE `(?<table>[^`]+)` ADD PRIMARY KEY \(`(?<column>[^`]+)`\);/';
 

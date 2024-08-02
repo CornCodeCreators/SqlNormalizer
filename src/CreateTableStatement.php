@@ -5,14 +5,6 @@ namespace CornCodeCreations\SqlNormalizer;
 class CreateTableStatement
 {
     /**
-     * @deprecated Replaced by 'sanitizeColumnNames()'-function
-     */
-    public static function sanitize_CreateTableCommand_ColumnNames(string $sqlSchema): string
-    {
-        return self::sanitizeColumnNames($sqlSchema);
-    }
-
-    /**
      * This function will remove unwanted characters from column-names!
      * Unwanted characters are '-' (hyphen) and ' ' (blank)
      */
