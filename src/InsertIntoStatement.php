@@ -5,9 +5,18 @@ namespace CornCodeCreations\SqlNormalizer;
 class InsertIntoStatement
 {
     /**
-     * todo: description
+     * @deprecated Replaced by 'sanitizeColumnNames()'-function
      */
     public static function normalizeColumnNamesInInsertIntoClause(string $sqlData): string
+    {
+        return self::sanitizeColumnNames($sqlData);
+    }
+
+    /**
+     * This function will remove unwanted characters from column-names!
+     * Unwanted characters are '-' (hyphen) and ' ' (blank)
+     */
+    public static function sanitizeColumnNames(string $sqlData): string
     {
         // Garb everything within "INSERT INTO ... VALUES" (and do not consider the detailed data after `VALUES` at all here)
         $pattern = '/^INSERT INTO `(?<table>[^`]+)` \((?<columns>[^)]+)\) VALUES/';
@@ -31,10 +40,19 @@ class InsertIntoStatement
         return $sqlDataNew;
     }
 
+
+    /**
+     * @deprecated Replaced by 'addLinebreakPerItem()'-function
+     */
+    public static function normalizeSqlDataByAddingLinebreaks(string $sqlData): string
+    {
+        return self::addLinebreakPerItem($sqlData);
+    }
+
     /**
      * Transform single line VALUES into multi line VALUES
      */
-    public static function normalizeSqlDataByAddingLinebreaks(string $sqlData): string
+    public static function addLinebreakPerItem(string $sqlData): string
     {
         $sqlData = str_replace('VALUES (', "VALUES\n  (", $sqlData);
         $sqlData = str_replace('), (', "),\n  (", $sqlData);
