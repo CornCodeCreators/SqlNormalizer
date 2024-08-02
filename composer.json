@@ -1,11 +1,12 @@
 {
     "name": "corncodecreations/sql-normalizer",
     "description": "Adapting SQL-strings to the best feasible standard.",
+    "keywords": ["php", "mysql", "mariadb", "sql", "normalizer", "standard", "sanitizer"],
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "CornCodeCreations\\SqlNormalizer\\": "src/"
+            "CornCodeCreations\\": "src/"
         }
     },
     "authors": [
@@ -15,5 +16,7 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {}
+    "require": {
+        "php": ">=7.4"
+    }
 }
