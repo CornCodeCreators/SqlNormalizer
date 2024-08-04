@@ -27,11 +27,12 @@ $ composer require corncodecreations/sql-normalizer
 `SqlNormalizer` provides static functions that is transforming the SQL string and returns a sanitized and normalized SQL string.
 
 Example:
+
 ```php
-use CornCodeCreations\SqlNormalizer\AlterTableStatement;
+use CornCodeCreations\SqlNormalizer\Statement\AlterTable;
 
 $sql           = "...";
-$sqlNormalized =  AlterTableStatement::addPrimaryKey_sanitizeColumnName($sql);
+$sqlNormalized =  AlterTable::addPrimaryKey_sanitizeColumnName($sql);
 ```
 
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace CornCodeCreations\SqlNormalizer;
+namespace CornCodeCreations\SqlNormalizer\Statement;
 
-class InsertIntoStatement
+class InsertInto
 {
     /**
      * This function will remove unwanted characters from column-names!

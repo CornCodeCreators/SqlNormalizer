@@ -1,8 +1,8 @@
 <?php
 
-namespace CornCodeCreations\SqlNormalizer;
+namespace CornCodeCreations\SqlNormalizer\Statement;
 
-class CreateTableStatement
+class CreateTable
 {
     /**
      * This function will remove unwanted characters from column-names!
@@ -25,7 +25,7 @@ class CreateTableStatement
                 return str_replace([' ', '-'], '', $column[0]);
             }, $colDefs);
 
-            return "CREATE TABLE `$tableName`\n ($colDefs);";
+            return "CREATE TABLE `$tableName`\n($colDefs);";
         }, $sqlSchema);
 
         return $sqlSchemaNormalized;

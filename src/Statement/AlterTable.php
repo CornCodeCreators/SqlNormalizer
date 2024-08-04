@@ -1,8 +1,8 @@
 <?php
 
-namespace CornCodeCreations\SqlNormalizer;
+namespace CornCodeCreations\SqlNormalizer\Statement;
 
-class AlterTableStatement
+class AlterTable
 {
     /**
      * Deactivates redundant INDEX-creation commands by commenting out
