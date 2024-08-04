@@ -16,11 +16,11 @@ class CreateTableTest extends AbstractStatementTestCase
     public function testAddIndex_DeactivateRedundantIndexCreation(): void
     {
         // ARRANGE
-        $dirtyContent    = $this->getDirtyContent('cases.sql');
+        $specimenContent = $this->getSpecimenContent('cases.sql');
         $expectedContent = $this->getExpectedContent('sanitizeColumnNames.sql');
 
         // ACT
-        $sanitizedContent = CreateTable::sanitizeColumnNames($dirtyContent);
+        $sanitizedContent = CreateTable::sanitizeColumnNames($specimenContent);
 
         // ASSERT
         $this->assertEqualLines($expectedContent, $sanitizedContent);

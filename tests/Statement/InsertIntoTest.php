@@ -15,11 +15,11 @@ class InsertIntoTest extends AbstractStatementTestCase
     public function testSanitizeColumnNames(): void
     {
         // ARRANGE
-        $dirtyContent    = $this->getDirtyContent('cases.sql');
+        $specimenContent = $this->getSpecimenContent('cases.sql');
         $expectedContent = $this->getExpectedContent('sanitizeColumnNames.sql');
 
         // ACT
-        $sanitizedContent = InsertInto::sanitizeColumnNames($dirtyContent);
+        $sanitizedContent = InsertInto::sanitizeColumnNames($specimenContent);
 
         // ASSERT
         $this->assertEqualLines($expectedContent, $sanitizedContent);
@@ -28,11 +28,11 @@ class InsertIntoTest extends AbstractStatementTestCase
     public function testAddLinebreakPerItem(): void
     {
         // ARRANGE
-        $dirtyContent    = $this->getDirtyContent('cases.sql');
+        $specimenContent = $this->getSpecimenContent('cases.sql');
         $expectedContent = $this->getExpectedContent('addLinebreakPerItem.sql');
 
         // ACT
-        $sanitizedContent = InsertInto::addLinebreakPerItem($dirtyContent);
+        $sanitizedContent = InsertInto::addLinebreakPerItem($specimenContent);
 
         // ASSERT
         $this->assertEqualLines($expectedContent, $sanitizedContent);

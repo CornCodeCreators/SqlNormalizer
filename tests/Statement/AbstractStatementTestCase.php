@@ -32,9 +32,9 @@ abstract class AbstractStatementTestCase extends TestCase
 
     abstract protected function getBaseFolder(): string;
 
-    private function getDirtyFolder(): string
+    private function getSecimenFolder(): string
     {
-        $folder = $this->getBaseFolder() . '/dirty/';
+        $folder = $this->getBaseFolder() . '/specimen/';
         $this->assertDirectoryExists($folder);
 
         return $folder;
@@ -48,9 +48,9 @@ abstract class AbstractStatementTestCase extends TestCase
         return $folder;
     }
 
-    protected function getDirtyContent(string $filename): string
+    protected function getSpecimenContent(string $filename): string
     {
-        $filePath = $this->getDirtyFolder() . $filename;
+        $filePath = $this->getSecimenFolder() . $filename;
         $this->assertFileExists($filePath);
 
         $content = file_get_contents($filePath);

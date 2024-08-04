@@ -15,11 +15,11 @@ final class AlterTableTest extends AbstractStatementTestCase
     public function testAddIndex_DeactivateRedundantIndexCreation(): void
     {
         // ARRANGE
-        $dirtyContent    = $this->getDirtyContent('cases.sql');
+        $specimenContent = $this->getSpecimenContent('cases.sql');
         $expectedContent = $this->getExpectedContent('addIndex_DeactivateRedundantIndexCreation.sql');
 
         // ACT
-        $sanitizedContent = AlterTable::addIndex_DeactivateRedundantIndexCreation($dirtyContent);
+        $sanitizedContent = AlterTable::addIndex_DeactivateRedundantIndexCreation($specimenContent);
 
         // ASSERT
         $this->assertEqualLines($expectedContent, $sanitizedContent);
@@ -28,11 +28,11 @@ final class AlterTableTest extends AbstractStatementTestCase
     public function testAddIndex_sanitizeIndexNamesAndColumnNames(): void
     {
         // ARRANGE
-        $dirtyContent    = $this->getDirtyContent('cases.sql');
+        $specimenContent = $this->getSpecimenContent('cases.sql');
         $expectedContent = $this->getExpectedContent('addIndex_sanitizeIndexNamesAndColumnNames.sql');
 
         // ACT
-        $sanitizedContent = AlterTable::addIndex_sanitizeIndexNamesAndColumnNames($dirtyContent);
+        $sanitizedContent = AlterTable::addIndex_sanitizeIndexNamesAndColumnNames($specimenContent);
 
         // ASSERT
         $this->assertEqualLines($expectedContent, $sanitizedContent);
@@ -41,11 +41,11 @@ final class AlterTableTest extends AbstractStatementTestCase
     public function testAddPrimaryKey_sanitizeColumnName(): void
     {
         // ARRANGE
-        $dirtyContent    = $this->getDirtyContent('cases.sql');
+        $specimenContent = $this->getSpecimenContent('cases.sql');
         $expectedContent = $this->getExpectedContent('addPrimaryKey_sanitizeColumnName.sql');
 
         // ACT
-        $sanitizedContent = AlterTable::addPrimaryKey_sanitizeColumnName($dirtyContent);
+        $sanitizedContent = AlterTable::addPrimaryKey_sanitizeColumnName($specimenContent);
 
         // ASSERT
         $this->assertEqualLines($expectedContent, $sanitizedContent);
