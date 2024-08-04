@@ -2,6 +2,7 @@
 
 namespace CornCodeCreations\SqlNormalizer\Tests\Statement;
 
+use CornCodeCreations\LineDumper;
 use CornCodeCreations\SqlNormalizer\Tests\Helper\StringHelper;
 use PHPUnit\Framework\TestCase;
 
@@ -73,7 +74,7 @@ abstract class AbstractStatementTestCase extends TestCase
         try {
             $this->assertSame($expectedString, $actualString, $message);
         } catch (\Throwable $t) {
-            $comp = StringHelper::compareMultilineString($expectedString, $actualString);
+            $comp = LineDumper::compareLines($expectedString, $actualString);
             self::fail("Failed asserting that two strings are equal.\n\n$comp");
         }
     }

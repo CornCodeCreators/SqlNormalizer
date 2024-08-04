@@ -4,9 +4,58 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "40504d206dc0b6534c277ad6bafe2602",
+    "content-hash": "b57c48509a6596b96dc3052d79fccfac",
     "packages": [],
     "packages-dev": [
+        {
+            "name": "corncodecreations/line-dumper",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/corncodecreations/line-dumper.git",
+                "reference": "d6a57ff2af1e0deafc19459b4e8d2aeac886b524"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/corncodecreations/line-dumper/zipball/d6a57ff2af1e0deafc19459b4e8d2aeac886b524",
+                "reference": "d6a57ff2af1e0deafc19459b4e8d2aeac886b524",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^11.3",
+                "symfony/var-dumper": "^7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CornCodeCreations\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tim Korn",
+                    "email": "info@corncodecreations.de"
+                }
+            ],
+            "description": "Show and compare strings - line by line.",
+            "keywords": [
+                "compare",
+                "php",
+                "string"
+            ],
+            "support": {
+                "issues": "https://github.com/corncodecreations/line-dumper/issues",
+                "source": "https://github.com/corncodecreations/line-dumper/tree/v1.0.0"
+            },
+            "time": "2024-08-04T15:16:30+00:00"
+        },
         {
             "name": "myclabs/deep-copy",
             "version": "1.12.0",
@@ -1809,7 +1858,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.4"
+        "php": ">=8.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"
