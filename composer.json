@@ -1,23 +1,23 @@
 {
-    "name": "corncodecreations/sql-normalizer",
+    "name": "corncodecreators/sql-normalizer",
     "description": "Adapting SQL-strings to the best feasible standard.",
     "keywords": ["php", "mysql", "mariadb", "sql", "normalizer", "standard", "sanitizer"],
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "CornCodeCreations\\SqlNormalizer\\": "src/"
+            "CornCodeCreators\\SqlNormalizer\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "CornCodeCreations\\SqlNormalizer\\Tests\\": "tests/"
+            "CornCodeCreators\\SqlNormalizer\\Tests\\": "tests/"
         }
     },
     "authors": [
         {
             "name": "Tim Korn",
-            "email": "info@corncodecreations.de"
+            "email": "info@corncode.de"
         }
     ],
     "minimum-stability": "stable",
@@ -27,6 +27,6 @@
     "require-dev": {
         "phpunit/phpunit": "^11.3",
         "symfony/var-dumper": "^7.1",
-        "corncodecreations/line-dumper": "^1.0"
+        "corncodecreators/line-dumper": "^1.0"
     }
 }

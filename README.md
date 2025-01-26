@@ -20,7 +20,7 @@ This can be particularly useful when dealing with legacy SQL files or when ensur
 
 ## Installation
 ```shell
-$ composer require corncodecreations/sql-normalizer
+$ composer require corncodecreators/sql-normalizer
 ```
 
 ## Usage
