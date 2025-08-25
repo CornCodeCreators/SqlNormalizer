@@ -61,23 +61,36 @@ class AlterTable
      * This function will remove unwanted characters from COLUMN-names and INDEX-names!
      * Unwanted characters are '-' (hyphen) and ' ' (blank)
      *
-     * On top INDEX-names will be transformed to lower case.
+     * On top INDEX-names will be transformed to lower case and prefixed with "idx_".
      */
     public static function addIndex_sanitizeIndexNamesAndColumnNames(string $sqlSchema): string
     {
-        $pattern = '/ALTER TABLE `(?<table>[^`]+)` ADD (?<unique>UNIQUE ){0,1}INDEX `(?<index>[^`]+)` \(`(?<column>[^`]+)`\);/';
+        $pattern = '/ALTER TABLE `(?<table>[^`]+)` ADD (?<unique>UNIQUE )?INDEX `(?<index>[^`]+)`(?: \((?<columns>[^\)]*)\))?;/';
 
         $sqlSchemaNormalized = preg_replace_callback($pattern, function ($matches) {
             // Capture the table name and the column part
-            $tableName  = $matches['table'];
-            $unique     = $matches['unique'];
-            $indexName  = $matches['index'];
-            $columnName = $matches['column'];
+            $tableName   = $matches['table'];
+            $unique      = $matches['unique'] ?? '';
+            $indexName   = $matches['index'];
+            $columnNames = $matches['columns'] ?? '';
 
             $indexName  = strtolower(str_replace([' ', '-'], '', $indexName));
-            $columnName = str_replace([' ', '-'], '', $columnName);
+            $indexName  = str_starts_with($indexName, 'idx_') ? $indexName : 'idx_'.$indexName;
 
-            return "ALTER TABLE `$tableName` ADD {$unique}INDEX `$indexName` (`$columnName`);";
+            if ($columnNames !== '') {
+                $columnNames = explode(',', $columnNames);
+                // Sanitize multiple columns if needed
+                $columnNames = array_map(
+                    fn($columnName) => str_replace([' ', '-'], '', trim($columnName, '` ')),
+                    $columnNames
+                );
+                $columnNames = implode('`,`', $columnNames);
+                $columnNames = "(`$columnNames`)";
+            } else {
+                $columnNames = '()'; // preserve empty parentheses
+            }
+
+            return "ALTER TABLE `$tableName` ADD {$unique}INDEX `$indexName` $columnNames;";
         }, $sqlSchema);
 
         return $sqlSchemaNormalized;

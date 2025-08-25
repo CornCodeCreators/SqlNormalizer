@@ -24,6 +24,9 @@
     "require": {
         "php": ">=8.0"
     },
+    "scripts": {
+      "code-test": "./vendor/bin/phpunit --stop-on-failure"
+    },
     "require-dev": {
         "phpunit/phpunit": "^11.3",
         "symfony/var-dumper": "^7.1",
