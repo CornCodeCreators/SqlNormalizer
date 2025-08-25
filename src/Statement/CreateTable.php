@@ -1,6 +1,6 @@
 <?php
 
-namespace CornCodeCreations\SqlNormalizer\Statement;
+namespace CornCodeCreators\SqlNormalizer\Statement;
 
 class CreateTable
 {

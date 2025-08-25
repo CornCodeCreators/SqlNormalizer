@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace CornCodeCreations\SqlNormalizer\Tests\Statement;
+namespace CornCodeCreators\SqlNormalizer\Tests\Statement;
 
-use CornCodeCreations\LineDumper;
-use CornCodeCreations\SqlNormalizer\Tests\Helper\StringHelper;
+use CornCodeCreators\LineDumper;
+use CornCodeCreators\SqlNormalizer\Tests\Helper\StringHelper;
 use PHPUnit\Framework\TestCase;
 
 

@@ -29,7 +29,7 @@ $ composer require corncodecreators/sql-normalizer
 Example:
 
 ```php
-use CornCodeCreations\SqlNormalizer\Statement\AlterTable;
+use CornCodeCreators\SqlNormalizer\Statement\AlterTable;
 
 $sql           = "...";
 $sqlNormalized =  AlterTable::addPrimaryKey_sanitizeColumnName($sql);

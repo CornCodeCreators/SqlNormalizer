@@ -1,9 +1,9 @@
 <?php
 
-namespace CornCodeCreations\SqlNormalizer\Tests\Statement;
+namespace CornCodeCreators\SqlNormalizer\Tests\Statement;
 
 
-use CornCodeCreations\SqlNormalizer\Statement\InsertInto;
+use CornCodeCreators\SqlNormalizer\Statement\InsertInto;
 
 class InsertIntoTest extends AbstractStatementTestCase
 {

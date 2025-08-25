@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace CornCodeCreations\SqlNormalizer\Tests\Statement;
+namespace CornCodeCreators\SqlNormalizer\Tests\Statement;
 
 
-use CornCodeCreations\SqlNormalizer\Statement\AlterTable;
+use CornCodeCreators\SqlNormalizer\Statement\AlterTable;
 
 final class AlterTableTest extends AbstractStatementTestCase
 {
