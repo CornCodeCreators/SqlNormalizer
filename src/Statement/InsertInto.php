@@ -11,7 +11,7 @@ class InsertInto
     public static function sanitizeColumnNames(string $sqlData): string
     {
         // Garb everything within "INSERT INTO ... VALUES" (and do not consider the detailed data after `VALUES` at all here)
-        $pattern = '/^INSERT INTO `(?<table>[^`]+)` \((?<columns>[^)]+)\) VALUES/';
+        $pattern = '/INSERT INTO `(?<table>[^`]+)` \((?<columns>[^)]+)\) VALUES/';
 
         // OUTER-call: Grab the main-section
         $sqlDataNew = preg_replace_callback($pattern, function ($matches) {

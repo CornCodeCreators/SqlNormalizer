@@ -9,16 +9,16 @@
     "packages-dev": [
         {
             "name": "corncodecreators/line-dumper",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CornCodeCreators/line-dumper.git",
-                "reference": "d6a57ff2af1e0deafc19459b4e8d2aeac886b524"
+                "reference": "ffcb34db13f5f8633079814cf4ce8e85dcf78bf3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CornCodeCreators/line-dumper/zipball/d6a57ff2af1e0deafc19459b4e8d2aeac886b524",
-                "reference": "d6a57ff2af1e0deafc19459b4e8d2aeac886b524",
+                "url": "https://api.github.com/repos/CornCodeCreators/line-dumper/zipball/ffcb34db13f5f8633079814cf4ce8e85dcf78bf3",
+                "reference": "ffcb34db13f5f8633079814cf4ce8e85dcf78bf3",
                 "shasum": ""
             },
             "require": {
@@ -31,7 +31,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "CornCodeCreations\\": "src/"
+                    "CornCodeCreators\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -41,7 +41,7 @@
             "authors": [
                 {
                     "name": "Tim Korn",
-                    "email": "info@corncodecreations.de"
+                    "email": "info@corncode.de"
                 }
             ],
             "description": "Show and compare strings - line by line.",
@@ -52,9 +52,9 @@
             ],
             "support": {
                 "issues": "https://github.com/CornCodeCreators/line-dumper/issues",
-                "source": "https://github.com/CornCodeCreators/line-dumper/tree/v1.0.0"
+                "source": "https://github.com/CornCodeCreators/line-dumper/tree/v1.0.1"
             },
-            "time": "2024-08-04T15:16:30+00:00"
+            "time": "2025-08-26T08:48:12+00:00"
         },
         {
             "name": "myclabs/deep-copy",
